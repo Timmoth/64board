@@ -23,7 +23,7 @@ jobs:
         run: npm install ethers
 
       - name: Run update script
-        run: node .github/scripts/fetch-grid.js
+        run: node .github/scripts/fetch-board.js
 
       - name: Commit updated grid.json
         run: |
