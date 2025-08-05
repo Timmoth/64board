@@ -5,52 +5,17 @@ import path from "path";
 // Constants
 const ROWS = 8;
 const COLS = 8;
-const BATCH_SIZE = 4;
-const ROW_DELAY_MS = 1000;
+const REQUEST_DELAY_MS = 300; // adjust slower if needed
 
-// Smart Contract (Base Mainnet)
 const CONTRACT_ADDRESS = "0x11e89363322EB8B12AdBFa6745E3AA92de6ddCD0";
 const ABI = [
   "function getCell(uint256 row, uint256 col) view returns (string content, uint256 value, address lastUpdater, uint256 lockedUntil)",
 ];
 
-// RPC and output
 const RPC_URL = process.env.RPC_URL || "https://mainnet.base.org";
 const OUTPUT_PATH = path.resolve("grid.json");
 
-const delay = ms => new Promise(res => setTimeout(res, ms));
-
-async function fetchCell(contract, row, col) {
-  try {
-    const [content, value, lastUpdater, lockedUntil] = await contract.getCell(row, col);
-    return {
-      content,
-      value: value.toString(),
-      lastUpdater,
-      lockedUntil: Number(lockedUntil),
-    };
-  } catch (err) {
-    console.error(`Error fetching cell (${row}, ${col}):`, err.reason || err.message || err);
-    return null;
-  }
-}
-
-async function fetchRow(contract, row) {
-  const rowData = [];
-
-  for (let i = 0; i < COLS; i += BATCH_SIZE) {
-    const batch = [];
-
-    for (let j = i; j < i + BATCH_SIZE && j < COLS; j++) {
-      batch.push(fetchCell(contract, row, j));
-    }
-
-    const batchResults = await Promise.all(batch);
-    rowData.push(...batchResults);
-  }
-
-  return rowData;
-}
+const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 async function fetchGrid() {
   const provider = new ethers.JsonRpcProvider(RPC_URL);
@@ -59,10 +24,34 @@ async function fetchGrid() {
   const grid = [];
 
   for (let row = 0; row < ROWS; row++) {
-    console.log(`Fetching row ${row}...`);
-    const rowData = await fetchRow(contract, row);
+    const rowData = [];
+
+    for (let col = 0; col < COLS; col++) {
+      try {
+        console.log(`Fetching cell (${row}, ${col})...`);
+        const [content, value, lastUpdater, lockedUntil] = await contract.getCell(row, col);
+
+        rowData.push({
+          content,
+          value: value.toString(),
+          lastUpdater,
+          lockedUntil: Number(lockedUntil),
+        });
+
+        console.log(`✓ Cell (${row}, ${col}) ok`);
+      } catch (err) {
+        if (err.code === "CALL_EXCEPTION") {
+          console.warn(`Cell (${row}, ${col}) reverted — likely uninitialized`);
+        } else {
+          console.error(`Error at cell (${row}, ${col}):`, err.reason || err.message || err);
+        }
+        rowData.push(null);
+      }
+
+      await delay(REQUEST_DELAY_MS); // slow down every request
+    }
+
     grid.push(rowData);
-    await delay(ROW_DELAY_MS); // Wait between rows
   }
 
   try {
@@ -73,7 +62,7 @@ async function fetchGrid() {
   }
 }
 
-fetchGrid().catch(err => {
+fetchGrid().catch((err) => {
   console.error("Unhandled error:", err.message || err);
   process.exit(1);
 });
