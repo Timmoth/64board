@@ -2,10 +2,9 @@ import { ethers } from "ethers";
 import fs from "fs";
 import path from "path";
 
-// Constants
 const ROWS = 8;
 const COLS = 8;
-const REQUEST_DELAY_MS = 300; // adjust slower if needed
+const REQUEST_DELAY_MS = 1000; // <-- 1 second per request
 
 const CONTRACT_ADDRESS = "0x11e89363322EB8B12AdBFa6745E3AA92de6ddCD0";
 const ABI = [
@@ -48,7 +47,8 @@ async function fetchGrid() {
         rowData.push(null);
       }
 
-      await delay(REQUEST_DELAY_MS); // slow down every request
+      // Delay here slows every call — 1 second per request
+      await delay(REQUEST_DELAY_MS);
     }
 
     grid.push(rowData);
