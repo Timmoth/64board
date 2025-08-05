@@ -4,7 +4,7 @@ import path from "path";
 
 const ROWS = 8;
 const COLS = 8;
-const REQUEST_DELAY_MS = 1000; // <-- 1 second per request
+const REQUEST_DELAY_MS = 5000; // <-- 5 seconds per request now
 
 const CONTRACT_ADDRESS = "0x11e89363322EB8B12AdBFa6745E3AA92de6ddCD0";
 const ABI = [
@@ -30,24 +30,40 @@ async function fetchGrid() {
         console.log(`Fetching cell (${row}, ${col})...`);
         const [content, value, lastUpdater, lockedUntil] = await contract.getCell(row, col);
 
-        rowData.push({
-          content,
-          value: value.toString(),
-          lastUpdater,
-          lockedUntil: Number(lockedUntil),
-        });
-
-        console.log(`✓ Cell (${row}, ${col}) ok`);
+        // If for some reason content is null or empty fallback
+        if (content === null) {
+          console.warn(`Cell (${row}, ${col}) returned null content, adding fallback.`);
+          rowData.push({
+            content: "",
+            value: "0",
+            lastUpdater: ethers.ZeroAddress,
+            lockedUntil: 0,
+          });
+        } else {
+          rowData.push({
+            content,
+            value: value.toString(),
+            lastUpdater,
+            lockedUntil: Number(lockedUntil),
+          });
+          console.log(`✓ Cell (${row}, ${col}) ok`);
+        }
       } catch (err) {
         if (err.code === "CALL_EXCEPTION") {
-          console.warn(`Cell (${row}, ${col}) reverted — likely uninitialized`);
+          console.warn(`Cell (${row}, ${col}) reverted — likely uninitialized, adding fallback.`);
         } else {
           console.error(`Error at cell (${row}, ${col}):`, err.reason || err.message || err);
         }
-        rowData.push(null);
+        // Add fallback cell instead of null
+        rowData.push({
+          content: "",
+          value: "0",
+          lastUpdater: ethers.ZeroAddress,
+          lockedUntil: 0,
+        });
       }
 
-      // Delay here slows every call — 1 second per request
+      // Delay here to avoid rate limits
       await delay(REQUEST_DELAY_MS);
     }
 
