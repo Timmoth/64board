@@ -46,7 +46,7 @@ async function fetchGrid() {
         });
 
         console.log(`✅ Cell (${row}, ${col}) fetched`);
-      } catch (err: any) {
+      } catch (err) {
         console.error(`❌ Error at cell (${row}, ${col}):`, err.reason || err.message || err);
         rowData.push(null); // Optional: mark as null if fetch fails
       }
@@ -60,7 +60,7 @@ async function fetchGrid() {
   try {
     fs.writeFileSync(OUTPUT_PATH, JSON.stringify(grid, null, 2));
     console.log(`💾 Grid saved to ${OUTPUT_PATH}`);
-  } catch (err: any) {
+  } catch (err) {
     console.error("❌ Failed to write file:", err.message || err);
   }
 }
