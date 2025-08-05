@@ -1,10 +1,12 @@
 import { ethers } from "ethers";
 import fs from "fs";
 import path from "path";
+import pLimit from "p-limit";
 
 // Constants
 const ROWS = 8;
 const COLS = 8;
+const CONCURRENCY = 4;
 
 // Smart Contract (Base Mainnet)
 const CONTRACT_ADDRESS = "0x11e89363322EB8B12AdBFa6745E3AA92de6ddCD0";
@@ -15,45 +17,39 @@ const ABI = [
 // Base Mainnet RPC
 const RPC_URL = process.env.RPC_URL || "https://mainnet.base.org";
 
-// Delay between RPC calls
-const DELAY_MS = 200;
+// Output file path
 const OUTPUT_PATH = path.resolve("grid.json");
 
-// Utility: Sleep between requests
-const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
 async function fetchGrid() {
-  console.log(`Connecting to Base via ${RPC_URL}`);
   const provider = new ethers.JsonRpcProvider(RPC_URL);
   const contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, provider);
+  const limit = pLimit(CONCURRENCY);
 
   const grid = [];
 
   for (let row = 0; row < ROWS; row++) {
-    const rowData = [];
+    const rowPromises = [];
 
     for (let col = 0; col < COLS; col++) {
-      try {
-        console.log(`Fetching cell (${row}, ${col})...`);
-        const cell = await contract.getCell(row, col);
-        const [content, value, lastUpdater, lockedUntil] = cell;
+      const cellPromise = limit(async () => {
+        try {
+          const [content, value, lastUpdater, lockedUntil] = await contract.getCell(row, col);
+          return {
+            content,
+            value: value.toString(),
+            lastUpdater,
+            lockedUntil: Number(lockedUntil),
+          };
+        } catch (err) {
+          console.error(`Error at cell (${row}, ${col}):`, err.reason || err.message || err);
+          return null;
+        }
+      });
 
-        rowData.push({
-          content,
-          value: value.toString(),
-          lastUpdater,
-          lockedUntil: Number(lockedUntil),
-        });
-
-        console.log(`Cell (${row}, ${col}) fetched`);
-      } catch (err) {
-        console.error(`Error at cell (${row}, ${col}):`, err.reason || err.message || err);
-        rowData.push(null);
-      }
-
-      await delay(DELAY_MS);
+      rowPromises.push(cellPromise);
     }
 
+    const rowData = await Promise.all(rowPromises);
     grid.push(rowData);
   }
 
