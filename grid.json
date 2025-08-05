@@ -2,15 +2,15 @@
   [
     {
       "content": "Hello, World!",
-      "value": "100000000000000000",
-      "lastUpdater": "0xC7Db4e70C2B2183B619e1a16932f4A753CC82902",
-      "lockedUntil": 1754424047
+      "value": "1000000000000000",
+      "lastUpdater": "0xd669F5D3f2cbcfe0A1f789837a976beea26F5142",
+      "lockedUntil": 1754447993
     },
     {
       "content": "ethdevnews.com",
-      "value": "1000000000000000",
-      "lastUpdater": "0x13ebd3443fa5575F0Eb173e323D8419F7452CfB1",
-      "lockedUntil": 1754440627
+      "value": "10000000000000",
+      "lastUpdater": "0xd669F5D3f2cbcfe0A1f789837a976beea26F5142",
+      "lockedUntil": 1754449485
     },
     {
       "content": "",
@@ -30,18 +30,48 @@
       "lastUpdater": "0x0000000000000000000000000000000000000000",
       "lockedUntil": 0
     },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
+    null,
+    null,
+    null
+  ],
+  [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
     {
       "content": "",
       "value": "0",
@@ -74,329 +104,29 @@
       "lastUpdater": "0x0000000000000000000000000000000000000000",
       "lockedUntil": 0
     },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    }
+    null,
+    null,
+    null,
+    null
   ],
   [
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    }
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
   ],
   [
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    }
-  ],
-  [
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    }
-  ],
-  [
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    }
-  ],
-  [
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    }
-  ],
-  [
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    },
-    {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
-    }
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
   ]
 ]
