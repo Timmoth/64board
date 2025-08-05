@@ -20,7 +20,7 @@ const DELAY_MS = 200;
 const OUTPUT_PATH = path.resolve("grid.json");
 
 // Utility: Sleep between requests
-const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 async function fetchGrid() {
   console.log(`🔗 Connecting to Base via ${RPC_URL}`);
