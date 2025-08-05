@@ -2,30 +2,28 @@ import { ethers } from "ethers";
 import fs from "fs";
 import path from "path";
 
-// Grid size
+// Constants
 const ROWS = 8;
 const COLS = 8;
 
-// Smart contract setup
-const CONTRACT_ADDRESS = "0x55dA504AF3500e5449ee833D1Ed9999b9D8B938B";
+// Smart Contract (Base Mainnet)
+const CONTRACT_ADDRESS = "0x11e89363322EB8B12AdBFa6745E3AA92de6ddCD0"; // Make sure this is correct for Base
 const ABI = [
-  "function getCell(uint row, uint col) view returns (string content, uint value, address lastUpdater, uint lockedUntil)",
+  "function getCell(uint256 row, uint256 col) view returns (string content, uint256 value, address lastUpdater, uint256 lockedUntil)",
 ];
 
-// RPC endpoint
-const RPC_URL = process.env.RPC_URL || "https://polygon-rpc.com";
+// Base Mainnet RPC
+const RPC_URL = process.env.RPC_URL || "https://mainnet.base.org";
 
-// Delay between requests to avoid rate limiting
+// Delay between RPC calls
 const DELAY_MS = 200;
+const OUTPUT_PATH = path.resolve("grid.json");
 
-function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
+// Utility: Sleep between requests
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 async function fetchGrid() {
-  console.log("Starting grid fetch from blockchain");
-  console.log(`Connecting to provider: ${RPC_URL}`);
-
+  console.log(`🔗 Connecting to Base via ${RPC_URL}`);
   const provider = new ethers.JsonRpcProvider(RPC_URL);
   const contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, provider);
 
@@ -36,18 +34,21 @@ async function fetchGrid() {
 
     for (let col = 0; col < COLS; col++) {
       try {
-        console.log(`Fetching cell at row ${row}, column ${col}...`);
-        const [content, value, lastUpdater, lockedUntil] = await contract.getCell(row, col);
+        console.log(`📦 Fetching cell (${row}, ${col})...`);
+        const cell = await contract.getCell(row, col);
+        const [content, value, lastUpdater, lockedUntil] = cell;
+
         rowData.push({
           content,
-          value: BigInt(value).toString(),
+          value: value.toString(), // Keep as string to avoid BigInt JSON issues
           lastUpdater,
           lockedUntil: Number(lockedUntil),
         });
-        console.log(`Successfully fetched cell (${row}, ${col})`);
-      } catch (err) {
-        console.error(`Error fetching cell (${row}, ${col}):`, err.reason || err.message || err);
-        rowData.push(null); // fallback to null for failed cells
+
+        console.log(`✅ Cell (${row}, ${col}) fetched`);
+      } catch (err: any) {
+        console.error(`❌ Error at cell (${row}, ${col}):`, err.reason || err.message || err);
+        rowData.push(null); // Optional: mark as null if fetch fails
       }
 
       await delay(DELAY_MS);
@@ -56,17 +57,16 @@ async function fetchGrid() {
     grid.push(rowData);
   }
 
-  const outputPath = path.resolve("grid.json");
-
   try {
-    fs.writeFileSync(outputPath, JSON.stringify(grid, null, 2));
-    console.log(`Grid data saved to ${outputPath}`);
-  } catch (err) {
-    console.error("Failed to write grid data to file:", err.message || err);
+    fs.writeFileSync(OUTPUT_PATH, JSON.stringify(grid, null, 2));
+    console.log(`💾 Grid saved to ${OUTPUT_PATH}`);
+  } catch (err: any) {
+    console.error("❌ Failed to write file:", err.message || err);
   }
 }
 
+// Run it
 fetchGrid().catch(err => {
-  console.error("Unhandled error in fetchGrid:", err.message || err);
+  console.error("🚨 Unhandled error in fetchGrid:", err.message || err);
   process.exit(1);
 });
