@@ -51,10 +51,10 @@
   ],
   [
     {
-      "content": "",
-      "value": "0",
-      "lastUpdater": "0x0000000000000000000000000000000000000000",
-      "lockedUntil": 0
+      "content": "Hello from the Etherside!",
+      "value": "150000000000000",
+      "lastUpdater": "0x88aa8B8Cc105bc1C644518608086bc1553947c3E",
+      "lockedUntil": 1754573139
     },
     {
       "content": "",
