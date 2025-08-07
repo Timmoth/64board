@@ -2,7 +2,7 @@ name: Update Board from Blockchain
 
 on:
   schedule:
-    - cron: '0 * * * *' # Every hour
+    - cron: '*/20 * * * *' # Every 20 mins
   workflow_dispatch: # Allow manual trigger
 
 jobs:
